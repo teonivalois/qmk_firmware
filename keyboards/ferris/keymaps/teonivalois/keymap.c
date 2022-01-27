@@ -16,13 +16,11 @@ enum ferris_layers {
 };
 
 enum ferris_tap_dances {
-  TD_Q_ESC,
-  TD_P_BSPC
+  TD_SPC_TAB
 };
 
 /* QWERTY */
-#define MY_Q TD(TD_Q_ESC)
-#define MY_P TD(TD_P_BSPC)
+#define MY_SPC TD(TD_SPC_TAB)
 
 #define MY_A LGUI_T(KC_A)
 #define MY_S LALT_T(KC_S)
@@ -34,8 +32,8 @@ enum ferris_tap_dances {
 #define MY_L RALT_T(KC_L)
 #define MY_SCLN RGUI_T(KC_SCLN)
 
-#define MY_NUM LT(_NUM,KC_TAB)
-#define MY_NAV LT(_NAV,LGUI(KC_SPC))
+#define MY_ESC LT(_NUM,KC_ESC)
+#define MY_BSPC LT(_NAV,KC_BSPC)
 
 /* NUM */
 #define MY_1 LGUI_T(KC_1)
@@ -49,44 +47,43 @@ enum ferris_tap_dances {
 #define MY_0 RGUI_T(KC_0)
 
 /* NAV */
-#define MY_MPLY LGUI_T(KC_MPLY)
+#define MY_TAB LGUI_T(KC_TAB)
 #define MY_VOLD LALT_T(KC_VOLD)
 #define MY_VOLU LCTL_T(KC_VOLU)
 #define MY_MUTE LSFT_T(KC_MUTE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT( /* QWERTY */
-    MY_Q,     KC_W,     KC_E,     KC_R,     KC_T,                         KC_Y,     KC_U,     KC_I,     KC_O,     MY_P,
+    KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,                         KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,
     MY_A,     MY_S,     MY_D,     MY_F,     KC_G,                         KC_H,     MY_J,     MY_K,     MY_L,     MY_SCLN,
     KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,                         KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,
-                                            MY_NUM,   KC_SPC,   KC_ENT,   MY_NAV
+                                            MY_ESC,   MY_SPC,   KC_ENT,   MY_BSPC
   ),
 
   [_NUM] = LAYOUT( /* [> NUM <] */
     KC_GRV,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                      XXXXXXX,  XXXXXXX,  KC_HOME,  KC_END,   XXXXXXX,
     MY_1,     MY_2,     MY_3,     MY_4,     KC_5,                         KC_6,     MY_7,     MY_8,     MY_9,     MY_0,
     XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                      XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-                                            _______,  XXXXXXX,  XXXXXXX,  MO(_FUN)
+                                            _______,  _______,  _______,  MO(_FUN)  
   ),
 
   [_NAV] = LAYOUT( /* [> NAV <] */
-    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                    KC_MINS,  KC_EQL,   KC_LBRC,  KC_RBRC,  KC_BSPC,
-    MY_MPLY,  MY_VOLD,  MY_VOLU,  MY_MUTE,  XXXXXXX,                    KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  KC_QUOT,
+    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                    KC_MINS,  KC_EQL,   KC_LBRC,  KC_RBRC,  XXXXXXX,
+    MY_TAB,   MY_VOLD,  MY_VOLU,  MY_MUTE,  KC_MPLY,                    KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  KC_QUOT,
     XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_BSLS,
-                                           MO(_FUN), XXXXXXX,  XXXXXXX, _______
+                                           MO(_FUN), KC_LGUI,  _______, _______  
   ),
 
   [_FUN] = LAYOUT( /* [> FUN <] */
     XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
     KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,                      KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,
     KC_F11,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_F12,
-                                            _______, XXXXXXX,  XXXXXXX, _______
+                                            _______, XXXXXXX,  XXXXXXX, _______  
   )
 };
 
 // Tap Dance Definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
-    // Tap once for Q, twice for ESC
-    [TD_Q_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_ESC),
-    [TD_P_BSPC] = ACTION_TAP_DANCE_DOUBLE(KC_P, KC_BSPC)
+    // Tap once for Space, twice for Tab
+    [TD_SPC_TAB] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_TAB)
 };
