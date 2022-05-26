@@ -2,7 +2,7 @@
 
 #define MY_TAB LCTL_T(KC_TAB)
 #define MY_SPC LGUI_T(KC_SPC)
-#define MY_ENT LSFT_T(KC_ENT)
+#define MY_ENT LALT_T(KC_ENT)
 #define MY_SPOT LGUI(KC_SPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
